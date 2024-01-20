@@ -1,0 +1,98 @@
+version: "0.2"
+user: abishekh
+key: roQgM6HyphXEIBIO0wjKxXwPElhyp8lU83JJx26Y35Tpk4sA3h
+testSuites: []
+pre: ['mvn -Dmaven.repo.local=./.m2 dependency:resolve']
+preDirectives:
+    commands: ['mvn -Dmaven.repo.local=./.m2 dependency:resolve']
+    maxRetries: 0
+    shell: ""
+    workingDirectory: ""
+post: [ls target/surefire-reports/]
+postDirectives:
+    commands: [ls target/surefire-reports/]
+    shell: ""
+    workingDirectory: ""
+env:
+    CACHE_DIR: m2_cache_dir
+jobLabel:
+    - selenium-testng
+    - linux
+    - autosplit
+runson: linux
+autosplit: true
+concurrency: 2
+testDiscoveryResult:
+    - com.lambdatest.AssignmentChallengeWindows#basicTest
+    - com.lambdatest.AssignmentChallengeWindows2#basicTest
+globalTimeout: 150
+tunnelOpts:
+    testsPerTunnel: 10
+testSuiteTimeout: 150
+testSuiteStep: 150
+cacheDirectories:
+    - .m2
+cacheKey: '{{ checksum "pom.xml" }}'
+retryOnFailure: true
+shell: bash
+maxRetries: 3
+jobID: 4b7132c9-1703-44c2-808f-ceeb765e58ea
+mergeArtifacts: true
+uploadArtefacts:
+    - name: ExecutionSnapshots
+      path:
+        - target/surefire-reports/html/**
+      email:
+        to: []
+        metaInfo: []
+        linkValidity: 0
+codeDirectory: java-testng-selenium-master
+report: true
+partialReports:
+    type: html
+    location: target/surefire-reports/html
+    frameworkName: extent
+    email:
+        to: []
+        metaInfo: []
+        linkValidity: 0
+framework:
+    name: maven/testng
+    flags:
+        - -Dplatname=linux
+    discoveryFlags: []
+    discoveryType: method
+    runnerFlags: []
+    workingDirectory: ""
+    isTestNGXMLSuite: true
+    defaultReports: false
+    additional_args: null
+    licenseKey: ""
+    userdefinediscovery: false
+    toscaArgs: null
+    version: ""
+    downloadURL: ""
+    baseCommand: ""
+cypress: false
+betaFeature:
+    setPartiallyCompletedAsCompleted: false
+combineTasksInMatrixMode: false
+captureScreenRecordingForScenarios: false
+maxRetriesPreSteps: 0
+triggerMode: false
+sourcePayload:
+    verifySSL: true
+collectLocalGitData: true
+dynamicAllocation: false
+appium: false
+platformConfig: null
+differentialUpload:
+    enabled: false
+    ttlHours: null
+    forcedDisabled: false
+project:
+    id: ""
+    name: ""
+    type: ""
+meta: {}
+alwaysRunPostSteps: false
